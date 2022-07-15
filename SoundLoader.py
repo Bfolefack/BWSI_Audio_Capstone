@@ -8,6 +8,7 @@ from scipy.ndimage.filters import maximum_filter
 from scipy.ndimage.morphology import generate_binary_structure
 from scipy.ndimage.morphology import iterate_structure
 from typing import Tuple, Callable, List
+import Utils
 
 def load_audio(filename):
     """
@@ -29,5 +30,5 @@ def tape_and_save_audio(seconds=1, filename="test.wav"):
     Records a song from the microphone and saves it to a file.
     """
     samples, sample_rate = tape_audio(seconds)
-    save_wave(samples, sample_rate, filename)
+    Utils.save_wave(samples, sample_rate, filename)
     return samples, sample_rate

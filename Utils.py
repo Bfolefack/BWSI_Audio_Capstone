@@ -8,6 +8,12 @@ from scipy.ndimage.filters import maximum_filter
 from scipy.ndimage.morphology import generate_binary_structure
 from scipy.ndimage.morphology import iterate_structure
 from typing import Tuple, Callable, List
+import SoundLoader
+import SongDatabase
+import PeakFinder
+import Spectrogram
+import Splice
+import FanOut
 
 #Boueny's Audio Library
 def save_audio(audio, filename="test"):
@@ -42,3 +48,9 @@ def fourier_complex_to_real(
 
     phases = np.arctan2(-complex_coeffs.imag, complex_coeffs.real)
     return amplitudes, phases
+def file_to_peaks(filepath):
+    return PeakFinder.get_peaks(Spectrogram.spectrogram(SoundLoader.load_audio(filepath)[0]))
+def file_to_fan(filepath):
+    return FanOut.generate_tuples(PeakFinder.get_peaks(Spectrogram.spectrogram(SoundLoader.load_audio(filepath)[0])))
+def wave_to_fan(waveform):
+    return FanOut.generate_tuples(PeakFinder.get_peaks(Spectrogram.spectrogram(waveform)))

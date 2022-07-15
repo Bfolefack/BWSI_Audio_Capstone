@@ -60,13 +60,13 @@ def spectrogram(waveform: np.ndarray, plot=False):
     amps, phases = fourier_complex_to_real(ck, N)
     F = freqs.max()
     extent = (0, T, 0, F)
-    fig, ax = plt.subplots()
     if plot == True:
+        fig, ax = plt.subplots()
         spectrogram, freqs, times, im = ax.specgram(
-        recorded_audio,
-        NFFT=4096,
-        Fs=sampling_rate,
-        window=mlab.window_hanning,
+            recorded_audio,
+            NFFT=4096,
+            Fs=sampling_rate,
+            window=mlab.window_hanning,
         )
         np.clip(spectrogram, 1E-20, a_max = None, out = spectrogram)
         S = np.log(spectrogram)
