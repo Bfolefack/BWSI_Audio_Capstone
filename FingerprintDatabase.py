@@ -96,5 +96,6 @@ s
                 trueCount[keys[i][0]] = values[i]
             else:
                 trueCount[keys[i][0]] += values[i]
+        trueCount.sort()
         print(trueCount)
         return list(trueCount.keys())[0], offset
